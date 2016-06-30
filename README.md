@@ -7,7 +7,9 @@ This server will handle the mount and docker task us.  <br>
 By default, the server only create readonly registry. To create readwrite registry, please shell script newregistry.sh<br>
        
 
-####To run this server in your machine, follow these steps:
+####Runing this server on your machine
+
+##### Export NFS volumes
 Ensure that nfs-utils is installed (on all systems):<br>
 
     yum install nfs-utils
