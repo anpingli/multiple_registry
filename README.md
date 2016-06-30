@@ -1,5 +1,5 @@
-####That is restfull api server to controll mulitple version of docker registry for openshift v3 upgrade testing. 
-===================
+That is restfull api server to controll mulitple version of docker registry for openshift v3 upgrade testing. 
+-------
 ####To run this server in your machine, follow these steps:
     Install docker 
     yum install docker
