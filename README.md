@@ -1,16 +1,13 @@
 That is restfull api server to controll mulitple version of images of docker registry for openshift v3 upgrade testing. 
 -------
 #### Design proposal
-    The docker images are stored in nfs share folder. currently, we need three nfs share directory: /var/export/registry31  /var/export/registry32 /var/export/registry33
-    To share these nfs storage, the nfs folder will be mounted to directory which will be mapped to docker storage by 'docker run -v /root/data/registry32:/var/lib/registry registry:2" 
-    This server will handle the mount and docker task us.  
-    By default, the server only create readonly registry. To create readwrite registry, please shell script newregistry.sh
+The docker images are stored in nfs share folder. currently, we need three nfs share directory: /var/export/registry31  /var/export/registry32 /var/export/registry33 <br>
+To share these nfs storage, the nfs folder will be mounted to directory which will be mapped to docker storage by 'docker run -v /root/data/registry32:/var/lib/registry registry:2" <br>
+This server will handle the mount and docker task us.  <br>
+By default, the server only create readonly registry. To create readwrite registry, please shell script newregistry.sh<br>
        
 
 ####To run this server in your machine, follow these steps:
-##### Export an NFS Volume
-For the purposes of this training, we will just demonstrate the master exporting an NFS volume for use as storage by the database. You would almost certainly not want to do this in production. If you happen to have another host with an NFS export handy, feel free to substitute that instead of setting the following up on the master, and skip the remainder of the setup steps.<br>
-<br>
 Ensure that nfs-utils is installed (on all systems):<br>
 
     yum install nfs-utils
