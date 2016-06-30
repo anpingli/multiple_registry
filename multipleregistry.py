@@ -9,14 +9,13 @@ API = Api(APP)
 TODOS = {}
 REG_DATA_DIR="/root/data"
 
-
 def find_a_nfs_folder(version):
    if version==31:
-       reg_share_dir="/var/export/registry31"
+       reg_share_dir="127.0.0.1:/var/export/registry31"
    if version==32:
-        reg_share_dir="/var/export/registry32"
+       reg_share_dir="127.0.0.1:/var/export/registry32"
    if version==33:
-       reg_share_dir="/var/export/registry33"
+       reg_share_dir="127.0.0.1:/var/export/registry33"
    return reg_share_dir
 
 def find_a_port():
@@ -84,7 +83,7 @@ class Registry_List(Resource):
         reg_name="registry" + reg_port
         reg_volume=REG_DATA_DIR+"/"+reg_name
         exec_shell_cmd("mkdir -p "+reg_volume)
-        exec_shell_cmd("mount 127.0.0.1:"+reg_share_dir+" "+reg_volume)
+        exec_shell_cmd("mount "+reg_share_dir+" "+reg_volume)
         exec_shell_cmd("docker run -d -p "+reg_port+":5000 --restart=always --name "+reg_name+" -v "+reg_volume+":/var/lib/registry:ro registry:2")
         reg_info=list_registy_by_name(reg_name)
         return reg_info
@@ -108,7 +107,7 @@ class Registry(Resource):
 
         exec_shell_cmd("umount "+reg_volume)
         exec_shell_cmd("docker rm -f -v "+reg_name)
-        exec_shell_cmd("mount 127.0.0.1:"+reg_share_dir+" "+reg_volume)
+        exec_shell_cmd("mount "+reg_share_dir+" "+reg_volume)
         exec_shell_cmd("docker run -d -p "+reg_port+":5000 --restart=always --name "+reg_name+" -v "+reg_volume+":/var/lib/registry registry:2")
         reg_info=list_registy_by_name(reg_name)
         return reg_info
