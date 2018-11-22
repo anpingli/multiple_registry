@@ -70,3 +70,5 @@ Then, as root on the master:<br>
     delete registry:
        curl http://registry.example.com/registry5000 -X delete
 
+     use less now
+
